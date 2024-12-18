@@ -1,1 +1,52 @@
-n
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Atletas</title>
+</head>
+<body>
+    <h1>Teste de Atletas</h1>
+    <button onclick="executarTeste()">Executar</button>
+    <pre id="resultado"></pre>
+
+    <script>
+        let atletas = [
+          {
+            nome: "Cesar Abascal",
+            notas: [10, 9.34, 8.42, 10, 7.88]
+          },
+          {
+            nome: "Fernando Puntel",
+            notas:  [8, 10, 10, 7, 9.33]
+          },
+          {
+            nome: "Daiane Jelinsky",
+            notas: [7, 10, 9.5, 9.5, 8]
+          },
+          {
+            nome: "Bruno Castro",
+            notas: [10, 10, 10, 9, 9.5]
+          }
+        ];
+
+        function calcularMedia(atletas) {
+            let resultado = '';
+            atletas.forEach((atleta) => {
+                let notasOrdenadas = atleta.notas.sort((a, b) => a - b);
+                let notasComputadas = notasOrdenadas.slice(1, 4);
+                let media = notasComputadas.reduce((total, nota) => total + nota, 0) / notasComputadas.length;
+                resultado += `Atleta: ${atleta.nome}\n`;
+                resultado += `Notas Obtidas: ${atleta.notas.join(", ")}\n`;
+                resultado += `Média Válida: ${media.toFixed(6)}\n\n`;
+            });
+            return resultado;
+        }
+
+        function executarTeste() {
+            let resultado = calcularMedia(atletas);
+            document.getElementById('resultado').textContent = resultado;
+        }
+    </script>
+</body>
+</html>
